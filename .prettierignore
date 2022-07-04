@@ -3,3 +3,9 @@ artifacts
 cache
 coverage*
 gasReporterOutput.json
+.eslintrc.js
+.solhint.json
+package.json
+tsconfig.json
+*.sol
+README.md

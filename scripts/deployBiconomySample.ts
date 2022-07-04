@@ -14,12 +14,16 @@ async function main() {
     // await hre.run('compile');
 
     // We get the contract to deploy
-    const Greeter = await ethers.getContractFactory('Greeter');
-    const greeter = await Greeter.deploy('Hello, Hardhat!');
+    const [deployer] = await ethers.getSigners();
 
-    await greeter.deployed();
+    console.log(await ethers.provider.getBalance(deployer.address));
 
-    console.log('Greeter deployed to:', greeter.address);
+    const biconomySampleFactory = await ethers.getContractFactory('BiconomySample');
+    const biconomySample = await biconomySampleFactory.deploy('0xF82986F574803dfFd9609BE8b9c7B92f63a1410E');
+
+    await biconomySample.deployed();
+
+    console.log('BiconomySample deployed to:', biconomySample.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
@@ -28,3 +32,5 @@ main().catch((error) => {
     console.error(error);
     process.exitCode = 1;
 });
+
+// deployed to: 0x99D218B44eF3d72CcF11d44d53e63534fcD7caf2
